@@ -166,7 +166,19 @@
   /* ============================================================
      MAIN
      ============================================================ */
-  .main { margin-left: 264px; max-width: 880px; padding: 72px 56px 120px; }
+  /* Fills the space beside the sidebar on a laptop instead of stopping short.
+     The cap only kicks in on very large desktops. */
+  .main {
+    /* Fills the track beside the sidebar; once the 1400px cap bites on a big
+       monitor, this centres the block in that track instead of hugging left.
+       Below ~1664px the max() just resolves to 264px. */
+    margin-left: max(264px, calc(264px + (100vw - 1664px) / 2));
+    max-width: 1400px;
+    padding: 72px clamp(28px, 4vw, 76px) 120px;
+  }
+  /* The shell is wide now, so hold running text to a readable measure —
+     long lines are hard to track back from. Grids still use the full width. */
+  .lede, p.body, .sub, .tl-note, .figcap { max-width: 72ch; }
   section { scroll-margin-top: 40px; }
   section + section { margin-top: 88px; }
 
@@ -239,7 +251,7 @@
      ============================================================ */
   .plot {
     position: relative; border: 1px solid var(--line); border-radius: 4px;
-    background: var(--card); height: 420px; overflow: hidden;
+    background: var(--card); height: clamp(340px, 46vh, 560px); overflow: hidden;
   }
   #gh-canvas { display: block; width: 100%; height: 100%; cursor: grab; touch-action: pan-y; }
   #gh-canvas.dragging { cursor: grabbing; }
@@ -655,11 +667,12 @@
     <h2>Things I co-founded</h2>
 
     <div class="feature">
-      <div class="shot" style="--h: 205">
+      <a class="shot" style="--h: 205" href="https://www.mypypath.com" target="_blank" rel="noopener">
+          <div class="shotlink">site &#8599;</div>
           <div class="figtag">fig. 2</div>
         <!-- Drop a screenshot at shots/pypath.png to replace this diagram -->
-        <!-- To use a real screenshot: save it as shots/pypath.png and uncomment the next line.
-               <img src="shots/pypath.png" alt="" onerror="this.remove()" /> -->
+        <img src="shots/pypath.jpg" alt="PyPath's home page: a winding trail through Python, ten units from foundations to first projects" loading="lazy" decoding="async"
+               onerror="this.remove()" />
         <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice">
           <rect class="art-bg" width="600" height="375"/>
           <g class="pop" style="--i:0"><rect class="art-soft" x="40" y="72" width="176" height="86" rx="6"/>
@@ -679,9 +692,9 @@
           <text class="art-label fade" style="--i:4" x="330" y="80">learners reached</text>
           <text class="art-label fade" style="--i:8" x="470" y="322">100+</text>
         </svg>
-      </div>
+      </a>
       <div class="pcopy">
-        <h3>PyPath</h3>
+        <h3><a href="https://www.mypypath.com" target="_blank" rel="noopener">PyPath</a></h3>
         <p>
           A social-impact initiative I co-founded with Sai Chowdarapu that teaches
           beginners Python through short, interactive activities — one idea at a
