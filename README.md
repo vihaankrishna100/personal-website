@@ -134,9 +134,6 @@ Each tile carries two colours: `--brand` is the official one, and `--brand-dk`
 is a lightened stand-in used only on the dark theme, for marks that would
 otherwise be invisible (Next.js is pure black, pandas and NumPy are near-black).
 
-QLoRA and Matplotlib have no Simple Icons entry, so they render as text tiles
-rather than borrowing a logo from somewhere with unclear licensing.
-
 To add a tool: copy a `.tool` block, swap the `<path d="...">` for the icon's
 path from `simple-icons/icons/<slug>.svg`, and set `--brand` to its hex.
 
