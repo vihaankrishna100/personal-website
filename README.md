@@ -45,18 +45,20 @@ and you see the diagram. Paths currently expected:
 
 ```
 shots/pypath.jpg        <- live, from SaiC123/mypypath (PyPath's own repo)
+shots/learnai.jpg       <- live, captured from learnai-forsyth.vercel.app
 shots/alzdetector.png   <- live, from the AlzDetector repo
 shots/finsight.png      <- live, from the FinSight-AI repo
 shots/feynmind.png      <- live, from the FeynMind-AI repo
 
-shots/learnai.png                         <- not yet; diagram shown instead
 shots/weave.png     shots/advisor.png     <- not yet; diagram shown instead
 shots/notebooks.png                       <- not yet; diagram shown instead
 ```
 
-Four projects show real app screenshots taken from their own GitHub repos.
+Five projects show real app screenshots. Four come from their own GitHub repos;
+LearnAI's is a headless-Chrome capture of the live site, since its repo holds
+brand banners rather than screenshots.
 PyPath's comes from `SaiC123/mypypath`, the repo it actually lives in — there
-is no PyPath repo on your account. The other four have no images in their repos, so
+is no PyPath repo on your account. The other three have no images in their repos, so
 they fall back to the hand-drawn SVG diagram. To swap one of those in later:
 save the file at the path above and uncomment the `<img>` line sitting right
 there in `index.html` — the image sits on top of the diagram and takes over.
