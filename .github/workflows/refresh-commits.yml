@@ -1,0 +1,40 @@
+name: Refresh commit graph
+
+# Keeps the commit surface on the site in step with GitHub.
+# Reads the public contributions calendar, so there is no token to create
+# and nothing to expire.
+
+on:
+  schedule:
+    # 06:17 UTC daily. GitHub queues scheduled runs, so the exact minute
+    # drifts; an odd minute is less contended than the top of the hour.
+    - cron: "17 6 * * *"
+  workflow_dispatch:        # lets you run it by hand from the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-commits
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pull the latest contributions into index.html
+        run: python3 scripts/refresh_commits.py vihaankrishna100
+
+      - name: Commit only if the graph actually changed
+        run: |
+          if git diff --quiet -- index.html; then
+            echo "Graph unchanged — nothing to commit."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Refresh commit graph"
+          git push

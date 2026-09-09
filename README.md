@@ -8,7 +8,8 @@ framework, no npm. The only external thing it loads is Google Fonts.
 | File | What it is |
 |------|------------|
 | `index.html` | The whole site |
-| `refresh-github.sh` | Re-pulls your commit data into the page |
+| `scripts/refresh_commits.py` | Re-pulls your commit data into the page |
+| `.github/workflows/` | Runs that script daily so the graph stays current |
 | `favicon.*`, `apple-touch-icon.png` | Browser-tab icons — a circular crop of your photo |
 | `make-favicon.py` | Regenerates those icons from `photo.jpg` |
 | `photo.jpg` | Your headshot, shown in the sidebar |
@@ -73,15 +74,24 @@ Three.js. Drag to rotate, scroll to zoom, hover a bar for that day. It auto-fits
 the frame at any angle and re-colours itself when you switch theme.
 
 The data is baked into the page in the `var GH = { … }` block so the site works
-as a static file with no API key. To update it:
+as a static file with no API key.
+
+**It updates itself.** A GitHub Action runs daily at 06:17 UTC, re-reads your
+public contributions calendar, and commits only if the graph actually changed.
+There is no token to create — it reads the same public page a visitor sees, so
+the numbers on your site always match the numbers on your GitHub profile.
+
+To update it by hand:
 
 ```bash
-./refresh-github.sh
+python3 scripts/refresh_commits.py
 ```
 
-That rewrites the `GH` block in place with fresh numbers from `gh api`. It needs
-the GitHub CLI signed in (`gh auth login`). Pass a different username as the
-first argument if you ever need to.
+You can also trigger the Action manually from the repo's **Actions** tab.
+
+One caveat worth knowing: GitHub disables scheduled workflows in repos with no
+activity for 60 days. Pushing anything (or running the Action by hand) resets
+that clock.
 
 The language percentages just below it are in `var LANGS = [ … ]` — those are
 by bytes across your public repos, which is why Jupyter Notebook is so high
