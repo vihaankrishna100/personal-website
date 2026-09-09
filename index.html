@@ -281,9 +281,31 @@
   .grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
 
   .shot {
+    display: block;
     position: relative; border: 1px solid var(--line); border-radius: 8px;
     overflow: hidden; background: var(--card); aspect-ratio: 16 / 10;
   }
+  /* a .shot that is an <a> links out to the repo */
+  a.shot { transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease; }
+  a.shot:hover {
+    border-color: hsl(var(--h) 45% 52%);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px -14px hsl(var(--h) 45% 30% / 0.55);
+  }
+  .shot .shotlink {
+    position: absolute; right: 12px; top: 10px; z-index: 3;
+    font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: hsl(var(--h) 40% 40%);
+    opacity: 0.6; transition: opacity 0.18s ease;
+  }
+  a.shot:hover .shotlink { opacity: 1; }
+  :root[data-theme="dark"] .shot .shotlink { color: hsl(var(--h) 45% 66%); }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .shot .shotlink { color: hsl(var(--h) 45% 66%); }
+  }
+  /* linked project headings */
+  .pcopy h3 a { color: inherit; transition: color 0.15s ease; }
+  .pcopy h3 a:hover { color: var(--accent); }
   .shot > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: var(--card); z-index: 2; }
   .shot > svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
   .shot .art-bg { fill: hsl(var(--h) 40% 94%); }
@@ -668,7 +690,8 @@
     </div>
 
     <div class="feature flip">
-      <div class="shot" style="--h: 150">
+      <a class="shot" style="--h: 150" href="https://learnai-forsyth.vercel.app" target="_blank" rel="noopener">
+          <div class="shotlink">site &#8599;</div>
           <div class="figtag">fig. 3</div>
         <!-- To use a real screenshot: save it as shots/learnai.png and uncomment the next line.
                <img src="shots/learnai.png" alt="" onerror="this.remove()" /> -->
@@ -691,9 +714,9 @@
           <text class="art-label fade" style="--i:5" x="86" y="330">students</text>
           <text class="art-label fade" style="--i:6" x="410" y="330">businesses</text>
         </svg>
-      </div>
+      </a>
       <div class="pcopy">
-        <h3>LearnAI</h3>
+        <h3><a href="https://learnai-forsyth.vercel.app" target="_blank" rel="noopener">LearnAI</a></h3>
         <p>
           A student-led initiative making practical AI education feel clear and
           welcoming across Forsyth County. Alongside a learning roadmap and events,
@@ -713,7 +736,8 @@
     <h2>Projects</h2>
 
     <div class="feature">
-      <div class="shot" style="--h: 265">
+      <a class="shot" style="--h: 265" href="https://github.com/vihaankrishna100/AlzDetector" target="_blank" rel="noopener">
+          <div class="shotlink">github &#8599;</div>
           <div class="figtag">fig. 4</div>
         <!-- Drop a screenshot at shots/alzdetector.png to replace this diagram -->
         <!-- To use a real screenshot: save it as shots/alzdetector.png and uncomment the next line.
@@ -742,9 +766,9 @@
           <text class="art-label fade" style="--i:5" x="234" y="316">agents confer</text>
           <text class="art-label fade" style="--i:7" x="368" y="92">explanation</text>
         </svg>
-      </div>
+      </a>
       <div class="pcopy">
-        <h3>AlzDetector</h3>
+        <h3><a href="https://github.com/vihaankrishna100/AlzDetector" target="_blank" rel="noopener">AlzDetector</a></h3>
         <p>
           A multi-agent framework for Alzheimer's detection. Several GPT-4 agents
           work over MRI and clinical modalities, run their own analysis tools, then
@@ -753,13 +777,14 @@
         </p>
         <p class="metric">3rd place · Regional Science Fair</p>
         <div class="plinks">
-          <a href="https://github.com/vihaankrishna100/AlzDetector" target="_blank" rel="noopener">Repository</a>
+          <a href="https://github.com/vihaankrishna100/AlzDetector" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" style="vertical-align:-2px;margin-right:6px"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>Repository</a>
         </div>
       </div>
     </div>
 
     <div class="feature flip">
-      <div class="shot" style="--h: 145">
+      <a class="shot" style="--h: 145" href="https://github.com/vihaankrishna100/FinSight-AI" target="_blank" rel="noopener">
+          <div class="shotlink">github &#8599;</div>
           <div class="figtag">fig. 5</div>
         <!-- To use a real screenshot: save it as shots/finsight.png and uncomment the next line.
                <img src="shots/finsight.png" alt="" onerror="this.remove()" /> -->
@@ -789,16 +814,16 @@
           <text class="art-label fade" style="--i:0" x="46" y="82">price + news</text>
           <text class="art-label fade" style="--i:7" x="356" y="106">grounded answer</text>
         </svg>
-      </div>
+      </a>
       <div class="pcopy">
-        <h3>FinSight AI</h3>
+        <h3><a href="https://github.com/vihaankrishna100/FinSight-AI" target="_blank" rel="noopener">FinSight AI</a></h3>
         <p>
           A RAG system for financial analysis. A fine-tuned model is paired with
           real-time retrieval from news sources and the yfinance API, so it gives
           grounded, up-to-date answers instead of refusing the question.
         </p>
         <div class="plinks">
-          <a href="https://github.com/vihaankrishna100/FinSight-AI" target="_blank" rel="noopener">Repository</a>
+          <a href="https://github.com/vihaankrishna100/FinSight-AI" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" style="vertical-align:-2px;margin-right:6px"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>Repository</a>
         </div>
       </div>
     </div>
@@ -806,7 +831,8 @@
     <div class="grid2">
 
       <article>
-        <div class="shot" style="--h: 25">
+        <a class="shot" style="--h: 25" href="https://github.com/vihaankrishna100/FeynMind-AI" target="_blank" rel="noopener">
+          <div class="shotlink">github &#8599;</div>
           <div class="figtag">fig. 6</div>
           <!-- To use a real screenshot: save it as shots/feynmind.png and uncomment the next line.
                <img src="shots/feynmind.png" alt="" onerror="this.remove()" /> -->
@@ -830,22 +856,23 @@
           <text class="art-label fade" style="--i:3" x="286" y="334">gap</text>
           <text class="art-label fade" style="--i:4" x="112" y="182">refine</text>
         </svg>
-        </div>
+        </a>
         <div class="pcopy">
-          <h3>FeynMind AI</h3>
+          <h3><a href="https://github.com/vihaankrishna100/FeynMind-AI" target="_blank" rel="noopener">FeynMind AI</a></h3>
           <p>
             A study tool built around the Feynman technique: students explain a
             topic in their own words to an AI model and get tested on it until the
             explanation holds up.
           </p>
           <div class="plinks">
-            <a href="https://github.com/vihaankrishna100/FeynMind-AI" target="_blank" rel="noopener">Repository</a>
+            <a href="https://github.com/vihaankrishna100/FeynMind-AI" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" style="vertical-align:-2px;margin-right:6px"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>Repository</a>
           </div>
         </div>
       </article>
 
       <article>
-        <div class="shot" style="--h: 330">
+        <a class="shot" style="--h: 330" href="https://github.com/vihaankrishna100/Weave" target="_blank" rel="noopener">
+          <div class="shotlink">github &#8599;</div>
           <div class="figtag">fig. 7</div>
           <!-- To use a real screenshot: save it as shots/weave.png and uncomment the next line.
                <img src="shots/weave.png" alt="" onerror="this.remove()" /> -->
@@ -866,21 +893,22 @@
           <text class="art-label fade" style="--i:7" x="40" y="336">mon</text>
           <text class="art-label fade" style="--i:7" x="524" y="336">sun</text>
         </svg>
-        </div>
+        </a>
         <div class="pcopy">
-          <h3>Weave</h3>
+          <h3><a href="https://github.com/vihaankrishna100/Weave" target="_blank" rel="noopener">Weave</a></h3>
           <p>
             A multi-agent journaling system designed to help teens track and
             improve their emotional health over time.
           </p>
           <div class="plinks">
-            <a href="https://github.com/vihaankrishna100/Weave" target="_blank" rel="noopener">Repository</a>
+            <a href="https://github.com/vihaankrishna100/Weave" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" style="vertical-align:-2px;margin-right:6px"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>Repository</a>
           </div>
         </div>
       </article>
 
       <article>
-        <div class="shot" style="--h: 95">
+        <a class="shot" style="--h: 95" href="https://github.com/vihaankrishna100/Financial_Advisor_LLM" target="_blank" rel="noopener">
+          <div class="shotlink">github &#8599;</div>
           <div class="figtag">fig. 8</div>
           <!-- To use a real screenshot: save it as shots/advisor.png and uncomment the next line.
                <img src="shots/advisor.png" alt="" onerror="this.remove()" /> -->
@@ -905,21 +933,22 @@
           <text class="art-label fade" style="--i:0" x="44" y="48">top 5 articles</text>
           <text class="art-label fade" style="--i:6" x="380" y="102">answer + citations</text>
         </svg>
-        </div>
+        </a>
         <div class="pcopy">
-          <h3>Financial Advisor LLM</h3>
+          <h3><a href="https://github.com/vihaankrishna100/Financial_Advisor_LLM" target="_blank" rel="noopener">Financial Advisor LLM</a></h3>
           <p>
             A RAG assistant that pulls the top news articles for a given stock and
             answers questions about it.
           </p>
           <div class="plinks">
-            <a href="https://github.com/vihaankrishna100/Financial_Advisor_LLM" target="_blank" rel="noopener">Repository</a>
+            <a href="https://github.com/vihaankrishna100/Financial_Advisor_LLM" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" style="vertical-align:-2px;margin-right:6px"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>Repository</a>
           </div>
         </div>
       </article>
 
       <article>
-        <div class="shot" style="--h: 195">
+        <a class="shot" style="--h: 195" href="https://github.com/vihaankrishna100/AI_ML_DeepLearning-Projects" target="_blank" rel="noopener">
+          <div class="shotlink">github &#8599;</div>
           <div class="figtag">fig. 9</div>
           <!-- To use a real screenshot: save it as shots/notebooks.png and uncomment the next line.
                <img src="shots/notebooks.png" alt="" onerror="this.remove()" /> -->
@@ -944,15 +973,15 @@
           <text class="art-label fade" style="--i:2" x="262" y="330">hidden</text>
           <text class="art-label fade" style="--i:4" x="454" y="330">output</text>
         </svg>
-        </div>
+        </a>
         <div class="pcopy">
-          <h3>Deep-learning notebooks</h3>
+          <h3><a href="https://github.com/vihaankrishna100/AI_ML_DeepLearning-Projects" target="_blank" rel="noopener">Deep-learning notebooks</a></h3>
           <p>
             Neural networks from scratch, image classification on CIFAR-10, and
             data-analysis experiments — the sketchbook behind the bigger projects.
           </p>
           <div class="plinks">
-            <a href="https://github.com/vihaankrishna100/AI_ML_DeepLearning-Projects" target="_blank" rel="noopener">Repository</a>
+            <a href="https://github.com/vihaankrishna100/AI_ML_DeepLearning-Projects" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" style="vertical-align:-2px;margin-right:6px"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>Repository</a>
           </div>
         </div>
       </article>
