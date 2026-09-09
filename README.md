@@ -12,7 +12,7 @@ framework, no npm. The only external thing it loads is Google Fonts.
 | `favicon.*`, `apple-touch-icon.png` | Browser-tab icons — a circular crop of your photo |
 | `make-favicon.py` | Regenerates those icons from `photo.jpg` |
 | `photo.jpg` | Your headshot, shown in the sidebar |
-| `shots/*.png` | *You add these.* Real project screenshots (optional) |
+| `shots/*.png` | Project screenshots, pulled from the project repos |
 
 ## Editing the text
 
@@ -44,10 +44,21 @@ the SVG and takes over automatically; until the file exists it removes itself
 and you see the diagram. Paths currently expected:
 
 ```
-shots/pypath.png   shots/learnai.png   shots/alzdetector.png
-shots/finsight.png shots/feynmind.png  shots/weave.png
-shots/advisor.png  shots/notebooks.png
+shots/alzdetector.png   <- live, from the AlzDetector repo
+shots/finsight.png      <- live, from the FinSight-AI repo
+shots/feynmind.png      <- live, from the FeynMind-AI repo
+
+shots/pypath.png    shots/learnai.png     <- not yet; diagram shown instead
+shots/weave.png     shots/advisor.png     <- not yet; diagram shown instead
+shots/notebooks.png                       <- not yet; diagram shown instead
 ```
+
+Three projects show real app screenshots, taken from the `resources/` folder
+of their own GitHub repos. The other five have no images in their repos, so
+they fall back to the hand-drawn SVG diagram. To swap one of those in later:
+save the file at the path above and uncomment the `<img>` line sitting right
+there in `index.html` — the image sits on top of the diagram and takes over.
+
 
 `style="--h: 265"` on a `.shot` sets that graphic's colour (any hue, 0–360).
 
