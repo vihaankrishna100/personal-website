@@ -1,0 +1,8 @@
+# macOS
+.DS_Store
+
+# local dev-server config, not needed to serve the site
+.claude/
+
+# scratch
+*.log
