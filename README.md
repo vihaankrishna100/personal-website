@@ -13,7 +13,8 @@ framework, no npm. The only external thing it loads is Google Fonts.
 | `favicon.*`, `apple-touch-icon.png` | Browser-tab icons — a circular crop of your photo |
 | `make-favicon.py` | Regenerates those icons from `photo.jpg` |
 | `photo.jpg` | Your headshot, shown in the sidebar |
-| `shots/*.png` | Project screenshots, pulled from the project repos |
+| `shots/*` | Project screenshots, pulled from the project repos |
+| `life/*` | **You add these.** Photos for the montage under the intro |
 
 ## Editing the text
 
@@ -97,6 +98,30 @@ The language percentages just below it are in `var LANGS = [ … ]` — those ar
 by bytes across your public repos, which is why Jupyter Notebook is so high
 (notebook files carry their saved output inline). Edit that array if you'd
 rather show a different mix.
+
+## The montage under the intro
+
+Six groups of photos. Hovering any tile lifts its whole group and names it;
+tapping does the same on a phone; tabbing works too, since each tile is a real
+button.
+
+**There are no photos in it yet** — it renders labelled placeholder tiles until
+you add some. To fill it in:
+
+1. Drop images in `life/` (any shape, tiles crop to fill; ~800px on the long
+   edge is plenty).
+2. Find the `LIFE` array near the bottom of `index.html` and list the filenames:
+
+```js
+{ id: "food", label: "Food", hue: 25, note: "Most of my good ideas ...",
+  photos: ["life/food-1.jpg", "life/food-2.jpg"], spans: ["w2", "", ""] },
+```
+
+- `note` is the line that appears on hover — **these are placeholder wording,
+  written to be replaced. Put them in your own words.**
+- `spans` sets the tile shapes: `w2`/`w3` wider, `h2` taller, `""` a single square.
+- `hue` is that group's colour (0–360).
+- Add or remove whole groups by editing the array — nothing else needs changing.
 
 ## Colours, fonts, motion
 

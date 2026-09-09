@@ -219,6 +219,70 @@
   }
   .hero-links a:hover { border-color: var(--accent); color: var(--accent); }
 
+
+  /* ============================================================
+     MONTAGE — grouped photos under the intro. Hovering any tile
+     lifts its whole group and names it; the rest recede.
+     ============================================================ */
+  .montage-wrap { margin-top: 52px; }
+  .montage-label {
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--ink-soft); margin-bottom: 14px;
+  }
+  .montage {
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: 92px; gap: 10px;
+  }
+  .tile {
+    position: relative; overflow: hidden; border-radius: 10px;
+    border: 1px solid var(--line); background: var(--card);
+    padding: 0; margin: 0; cursor: pointer;
+    transition: opacity 0.28s ease, filter 0.28s ease, transform 0.28s ease;
+    display: block; width: 100%; height: 100%;
+    -webkit-appearance: none; appearance: none;
+  }
+  .tile.w2 { grid-column: span 2; }
+  .tile.w3 { grid-column: span 3; }
+  .tile.h2 { grid-row: span 2; }
+  .tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* placeholder shown until a real photo is listed for the group */
+  .tile .ph {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 7px; text-align: center; padding: 8px;
+    background: linear-gradient(150deg, hsl(var(--h) 42% 90%), hsl(var(--h) 38% 80%));
+    color: hsl(var(--h) 45% 30%);
+  }
+  :root[data-theme="dark"] .tile .ph { background: linear-gradient(150deg, hsl(var(--h) 24% 22%), hsl(var(--h) 28% 15%)); color: hsl(var(--h) 45% 72%); }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .tile .ph { background: linear-gradient(150deg, hsl(var(--h) 24% 22%), hsl(var(--h) 28% 15%)); color: hsl(var(--h) 45% 72%); }
+  }
+  .tile .ph svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+  .tile .ph b { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 400; }
+
+  /* one group active: everything else steps back */
+  .montage.lit .tile { opacity: 0.26; filter: saturate(0.45); }
+  .montage.lit .tile.on { opacity: 1; filter: none; transform: translateY(-3px); }
+  .tile:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .montage-cap {
+    margin-top: 14px; min-height: 2.9em;
+    display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+  }
+  .montage-cap b { font-family: var(--serif); font-size: 1.12rem; font-weight: 600; }
+  .montage-cap span { color: var(--ink-soft); font-size: 0.94rem; }
+  .montage-cap .hint { font-family: var(--mono); font-size: 0.74rem; color: var(--ink-soft); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tile { transition: none; }
+    .montage.lit .tile.on { transform: none; }
+  }
+  @media (max-width: 720px) {
+    .montage { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 78px; }
+    .tile.w3 { grid-column: span 2; }
+  }
+
   /* ---- Focus cards ---- */
   .focus { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
   .fcard { border: 1px solid var(--line); border-radius: 14px; padding: 18px; background: var(--card); }
@@ -556,6 +620,13 @@
       <a href="https://github.com/vihaankrishna100" target="_blank" rel="noopener">GitHub</a>
       <a href="https://www.linkedin.com/in/vihaan-krishna" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://huggingface.co/vihaankrishna100" target="_blank" rel="noopener">Hugging&nbsp;Face</a>
+    </div>
+
+    <!-- ---------- MONTAGE (photos listed in the LIFE array at the bottom) ---------- -->
+    <div class="montage-wrap">
+      <div class="montage-label">Off the clock</div>
+      <div class="montage" id="montage" aria-label="Photos, grouped by what they are"></div>
+      <p class="montage-cap" id="montage-cap"><span class="hint">Hover a photo to see what it is.</span></p>
     </div>
   </section>
 
@@ -1051,6 +1122,106 @@
 </main>
 
 <script>
+/* ============================================================
+   MONTAGE — the groups under the intro.
+
+   Add photos: drop files in life/, then list them in "photos".
+   A group with an empty list still renders a labelled placeholder,
+   so nothing looks broken while you gather pictures.
+   Edit "note" freely — those lines are a starting point, not gospel.
+   "span" controls the tile shapes: w2/w3 = wider, h2 = taller.
+   ============================================================ */
+var LIFE = [
+  { id: "friends",  label: "Friends",     hue: 205, note: "The people I end up building, arguing and eating with.",
+    photos: [], spans: ["w2 h2", ""] },
+  { id: "watching", label: "TV & film",   hue: 265, note: "What goes on when I finally close the laptop.",
+    photos: [], spans: ["", "w2"] },
+  { id: "food",     label: "Food",        hue: 25,  note: "Most of my good ideas have happened around a table.",
+    photos: [], spans: ["w2", "", ""] },
+  { id: "hoops",    label: "Basketball",  hue: 18,  note: "The one hour a day nothing is a to-do list.",
+    photos: [], spans: ["h2", "w2"] },
+  { id: "fbla",     label: "FBLA",        hue: 150, note: "Competition season with the people I lead a chapter with.",
+    photos: [], spans: ["w2", ""] },
+  { id: "building", label: "Late builds", hue: 330, note: "Half of this site was written well past midnight.",
+    photos: [], spans: ["", "w2"] }
+];
+
+(function () {
+  var host = document.getElementById("montage");
+  var cap  = document.getElementById("montage-cap");
+  if (!host || !cap) return;
+
+  var GLYPH = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/>' +
+              '<circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5-5-5 5-2-2-6 5"/></svg>';
+  var DEFAULT = '<span class="hint">Hover a photo to see what it is.</span>';
+
+  LIFE.forEach(function (g) {
+    // one tile per photo, or one placeholder per span if there are none yet
+    var count = g.photos.length || g.spans.length;
+    for (var i = 0; i < count; i++) {
+      var t = document.createElement("button");
+      t.type = "button";
+      t.className = ("tile " + (g.spans[i] || "")).trim();
+      t.style.setProperty("--h", g.hue);
+      t.dataset.group = g.id;
+      t.setAttribute("aria-label", g.label + " — " + g.note);
+
+      if (g.photos[i]) {
+        var img = document.createElement("img");
+        img.src = g.photos[i];
+        img.alt = g.label;
+        img.loading = "lazy";
+        img.decoding = "async";
+        img.onerror = function () { this.remove(); };
+        t.appendChild(img);
+      } else {
+        t.innerHTML = '<span class="ph">' + GLYPH + '<b>' + g.label + '</b></span>';
+      }
+      host.appendChild(t);
+    }
+  });
+
+  var byId = {};
+  LIFE.forEach(function (g) { byId[g.id] = g; });
+
+  function light(id) {
+    var g = byId[id];
+    if (!g) return;
+    host.classList.add("lit");
+    Array.prototype.forEach.call(host.children, function (t) {
+      t.classList.toggle("on", t.dataset.group === id);
+    });
+    cap.innerHTML = "<b></b><span></span>";
+    cap.firstChild.textContent = g.label;
+    cap.lastChild.textContent = g.note;
+  }
+  function clear() {
+    host.classList.remove("lit");
+    Array.prototype.forEach.call(host.children, function (t) { t.classList.remove("on"); });
+    cap.innerHTML = DEFAULT;
+  }
+
+  host.addEventListener("pointerover", function (e) {
+    var t = e.target.closest(".tile");
+    if (t) light(t.dataset.group);
+  });
+  host.addEventListener("pointerleave", clear);
+  host.addEventListener("focusin", function (e) {
+    var t = e.target.closest(".tile");
+    if (t) light(t.dataset.group);
+  });
+  host.addEventListener("focusout", function (e) {
+    if (!host.contains(e.relatedTarget)) clear();
+  });
+  // touch: tapping a tile names its group instead of doing nothing
+  host.addEventListener("click", function (e) {
+    var t = e.target.closest(".tile");
+    if (!t) return;
+    if (host.classList.contains("lit") && t.classList.contains("on")) clear();
+    else light(t.dataset.group);
+  });
+})();
+
 /* ============================================================
    GITHUB DATA — refresh with:  ./refresh-github.sh
    Only the days with commits are listed; everything else is zero.
