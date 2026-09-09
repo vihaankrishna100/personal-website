@@ -54,16 +54,14 @@ shots/alzdetector.png   <- live, from the AlzDetector repo
 shots/finsight.png      <- live, from the FinSight-AI repo
 shots/feynmind.png      <- live, from the FeynMind-AI repo
 
-shots/notebooks.png                       <- not yet; diagram shown instead
 ```
 
-Seven of the eight projects show real app screenshots. Four come from their own GitHub repos;
+Every project on the site shows a real app screenshot. Four come from their own GitHub repos;
 LearnAI's is a headless-Chrome capture of the live site, since its repo holds
 brand banners rather than screenshots.
 PyPath's comes from `SaiC123/mypypath`, the repo it actually lives in — there
 is no PyPath repo on your account. Weave and Financial Advisor LLM have no images committed, so those two were
-captured by running each app locally and screenshotting it. Only the notebooks
-repo is left, and a notebook has no UI to shoot, so
+captured by running each app locally and screenshotting it.
 they fall back to the hand-drawn SVG diagram. To swap one of those in later:
 save the file at the path above and uncomment the `<img>` line sitting right
 there in `index.html` — the image sits on top of the diagram and takes over.
@@ -125,6 +123,22 @@ you add some. To fill it in:
 - `spans` sets the tile shapes: `w2`/`w3` wider, `h2` taller, `""` a single square.
 - `hue` is that group's colour (0–360).
 - Add or remove whole groups by editing the array — nothing else needs changing.
+
+## The toolkit grid
+
+The brand marks come from [Simple Icons](https://simpleicons.org), whose icon
+files are CC0. The trademarks themselves belong to their owners — they appear
+here purely to say "I build with this", which is ordinary nominative use.
+
+Each tile carries two colours: `--brand` is the official one, and `--brand-dk`
+is a lightened stand-in used only on the dark theme, for marks that would
+otherwise be invisible (Next.js is pure black, pandas and NumPy are near-black).
+
+QLoRA and Matplotlib have no Simple Icons entry, so they render as text tiles
+rather than borrowing a logo from somewhere with unclear licensing.
+
+To add a tool: copy a `.tool` block, swap the `<path d="...">` for the icon's
+path from `simple-icons/icons/<slug>.svg`, and set `--brand` to its hex.
 
 ## Colours, fonts, motion
 
