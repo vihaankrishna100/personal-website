@@ -392,6 +392,11 @@
     :root:not([data-theme="light"]) .shot .figtag { color: hsl(var(--h) 45% 66%); }
   }
 
+  /* a titled block sitting inside a section, e.g. the commit surface
+     at the foot of Projects */
+  .subsection { margin-top: 72px; padding-top: 44px; border-top: 1px solid var(--line); }
+  h3.subhead { font-size: 1.4rem; margin-bottom: 8px; }
+
   .pcopy h3 { font-size: 1.5rem; margin-bottom: 12px; }
   .grid2 .pcopy h3 { font-size: 1.2rem; margin-top: 18px; }
   .pcopy p { color: var(--ink-soft); margin: 0; }
@@ -500,7 +505,6 @@
     <a href="#about"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>About</a>
     <a href="#focus"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg>Focus</a>
     <a href="#experience"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>Experience</a>
-    <a href="#commits"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Commits</a>
     <a href="#projects"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M4 5h16v14H4z"/><path d="M4 10h16M10 5v14"/></svg>Projects</a>
     <a href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Contact</a>
   </nav>
@@ -635,41 +639,16 @@
     </div>
   </section>
 
-  <!-- ---------- COMMIT SURFACE ---------- -->
-  <section id="commits" class="reveal">
-    <div class="kicker">§ 4 · Commit history</div>
-    <h2>A year of commits</h2>
-    <p class="sub">the last 52 weeks of GitHub activity, extruded into a surface.</p>
-
-    <div class="plot">
-      <canvas id="gh-canvas"></canvas>
-      <div class="legend" id="gh-legend"><span>less</span><span id="gh-swatches"></span><span>more →</span></div>
-      <div class="tip" id="gh-tip" hidden></div>
-    </div>
-    <p class="figcap"><b>fig. 1</b> — drag to rotate · scroll to zoom · hover a bar for that day's commits.</p>
-
-    <div class="ghstats">
-      <div>
-        total: <b id="gh-total">—</b> &nbsp;·&nbsp;
-        active days: <b id="gh-active">—</b> &nbsp;·&nbsp;
-        longest streak: <b id="gh-streak">—</b>
-      </div>
-      <div class="langwrap">
-        <div class="langbar" id="langbar"></div>
-        <div class="langkey" id="langkey"></div>
-      </div>
-    </div>
-  </section>
 
   <!-- ---------- INITIATIVES ---------- -->
   <section id="initiatives" class="reveal">
-    <div class="kicker">§ 5 · Initiatives</div>
+    <div class="kicker">§ 4 · Initiatives</div>
     <h2>Things I co-founded</h2>
 
     <div class="feature">
       <a class="shot" style="--h: 205" href="https://www.mypypath.com" target="_blank" rel="noopener">
           <div class="shotlink">site &#8599;</div>
-          <div class="figtag">fig. 2</div>
+          <div class="figtag">fig. 1</div>
         <!-- Drop a screenshot at shots/pypath.png to replace this diagram -->
         <img src="shots/pypath.jpg" alt="PyPath's home page: a winding trail through Python, ten units from foundations to first projects" loading="lazy" decoding="async"
                onerror="this.remove()" />
@@ -713,7 +692,7 @@
     <div class="feature flip">
       <a class="shot" style="--h: 150" href="https://learnai-forsyth.vercel.app" target="_blank" rel="noopener">
           <div class="shotlink">site &#8599;</div>
-          <div class="figtag">fig. 3</div>
+          <div class="figtag">fig. 2</div>
         <!-- To use a real screenshot: save it as shots/learnai.png and uncomment the next line.
                <img src="shots/learnai.png" alt="" onerror="this.remove()" /> -->
         <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice">
@@ -753,13 +732,13 @@
 
   <!-- ---------- PROJECTS ---------- -->
   <section id="projects" class="reveal">
-    <div class="kicker">§ 6 · Projects</div>
+    <div class="kicker">§ 5 · Projects</div>
     <h2>Projects</h2>
 
     <div class="feature">
       <a class="shot" style="--h: 265" href="https://github.com/vihaankrishna100/AlzDetector" target="_blank" rel="noopener">
           <div class="shotlink">github &#8599;</div>
-          <div class="figtag">fig. 4</div>
+          <div class="figtag">fig. 3</div>
         <!-- Drop a screenshot at shots/alzdetector.png to replace this diagram -->
         <img src="shots/alzdetector.png" alt="ADgent's interface: MRI and clinical data on the left, agent reasoning on the right" loading="lazy" decoding="async"
                onerror="this.remove()" />
@@ -806,7 +785,7 @@
     <div class="feature flip">
       <a class="shot" style="--h: 145" href="https://github.com/vihaankrishna100/FinSight-AI" target="_blank" rel="noopener">
           <div class="shotlink">github &#8599;</div>
-          <div class="figtag">fig. 5</div>
+          <div class="figtag">fig. 4</div>
         <img src="shots/finsight.png" alt="FinSight AI's interface: stock ticker, time frame and an investment question" loading="lazy" decoding="async"
                onerror="this.remove()" />
         <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice">
@@ -854,7 +833,7 @@
       <article>
         <a class="shot" style="--h: 25" href="https://github.com/vihaankrishna100/FeynMind-AI" target="_blank" rel="noopener">
           <div class="shotlink">github &#8599;</div>
-          <div class="figtag">fig. 6</div>
+          <div class="figtag">fig. 5</div>
           <img src="shots/feynmind.png" alt="FeynMind AI's interface: pick a topic, then generate a quiz or open a Feynman chat" loading="lazy" decoding="async"
                onerror="this.remove()" />
           <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice">
@@ -894,7 +873,7 @@
       <article>
         <a class="shot" style="--h: 330" href="https://github.com/vihaankrishna100/Weave" target="_blank" rel="noopener">
           <div class="shotlink">github &#8599;</div>
-          <div class="figtag">fig. 7</div>
+          <div class="figtag">fig. 6</div>
           <!-- To use a real screenshot: save it as shots/weave.png and uncomment the next line.
                <img src="shots/weave.png" alt="" onerror="this.remove()" /> -->
           <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice">
@@ -930,7 +909,7 @@
       <article>
         <a class="shot" style="--h: 95" href="https://github.com/vihaankrishna100/Financial_Advisor_LLM" target="_blank" rel="noopener">
           <div class="shotlink">github &#8599;</div>
-          <div class="figtag">fig. 8</div>
+          <div class="figtag">fig. 7</div>
           <!-- To use a real screenshot: save it as shots/advisor.png and uncomment the next line.
                <img src="shots/advisor.png" alt="" onerror="this.remove()" /> -->
           <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice">
@@ -970,7 +949,7 @@
       <article>
         <a class="shot" style="--h: 195" href="https://github.com/vihaankrishna100/AI_ML_DeepLearning-Projects" target="_blank" rel="noopener">
           <div class="shotlink">github &#8599;</div>
-          <div class="figtag">fig. 9</div>
+          <div class="figtag">fig. 8</div>
           <!-- To use a real screenshot: save it as shots/notebooks.png and uncomment the next line.
                <img src="shots/notebooks.png" alt="" onerror="this.remove()" /> -->
           <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice">
@@ -1008,11 +987,37 @@
       </article>
 
     </div>
+
+    <!-- ---------- commit surface: the trail behind the projects above ---------- -->
+    <div class="subsection" id="commits">
+      <h3 class="subhead">A year of commits</h3>
+      <p class="sub">the last 52 weeks of GitHub activity, extruded into a surface.</p>
+
+      <div class="plot">
+        <canvas id="gh-canvas"></canvas>
+        <div class="legend" id="gh-legend"><span>less</span><span id="gh-swatches"></span><span>more →</span></div>
+        <div class="tip" id="gh-tip" hidden></div>
+      </div>
+      <p class="figcap"><b>fig. 9</b> — drag to rotate · scroll to zoom · hover a bar for that day's commits.</p>
+
+      <div class="ghstats">
+        <div>
+          total: <b id="gh-total">—</b> &nbsp;·&nbsp;
+          active days: <b id="gh-active">—</b> &nbsp;·&nbsp;
+          longest streak: <b id="gh-streak">—</b>
+        </div>
+        <div class="langwrap">
+          <div class="langbar" id="langbar"></div>
+          <div class="langkey" id="langkey"></div>
+        </div>
+      </div>
+    </div>
+
   </section>
 
   <!-- ---------- TOOLKIT ---------- -->
   <section id="tools" class="reveal">
-    <div class="kicker">§ 7 · Toolkit</div>
+    <div class="kicker">§ 6 · Toolkit</div>
     <h2>What I build with</h2>
     <div class="tech">
       <span>PyTorch</span><span>TensorFlow</span><span>scikit-learn</span><span>Keras</span>
@@ -1023,7 +1028,7 @@
 
   <!-- ---------- CONTACT ---------- -->
   <section id="contact" class="reveal">
-    <div class="kicker">§ 8 · Contact</div>
+    <div class="kicker">§ 7 · Contact</div>
     <h2>Get in touch</h2>
     <p class="body">
       The best way to reach me is by email. I'm always happy to talk about
