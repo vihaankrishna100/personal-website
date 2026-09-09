@@ -175,11 +175,6 @@ If you'd rather have a proper contact *form* (name / message / send) instead of
 a mailto link, that needs a form-handling service since this is a static site —
 say the word and I'll wire one up.
 
-## Still to double-check
-
-- **LinkedIn URL** is a guess: `linkedin.com/in/vihaan-krishna`. It appears in
-  the sidebar, the intro, and Contact.
-
 ## Publishing (free)
 
 - **GitHub Pages:** push this folder to a repo → Settings → Pages → deploy from
