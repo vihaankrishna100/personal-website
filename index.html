@@ -306,7 +306,11 @@
   /* linked project headings */
   .pcopy h3 a { color: inherit; transition: color 0.15s ease; }
   .pcopy h3 a:hover { color: var(--accent); }
-  .shot > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: var(--card); z-index: 2; }
+  .shot > img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;   /* keep the app header in frame */
+    background: var(--card); z-index: 2;
+  }
   .shot > svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
   .shot .art-bg { fill: hsl(var(--h) 40% 94%); }
   .shot .art-ink { stroke: hsl(var(--h) 45% 38%); fill: none; stroke-width: 2; }
@@ -740,8 +744,8 @@
           <div class="shotlink">github &#8599;</div>
           <div class="figtag">fig. 4</div>
         <!-- Drop a screenshot at shots/alzdetector.png to replace this diagram -->
-        <!-- To use a real screenshot: save it as shots/alzdetector.png and uncomment the next line.
-               <img src="shots/alzdetector.png" alt="" onerror="this.remove()" /> -->
+        <img src="shots/alzdetector.png" alt="ADgent's interface: MRI and clinical data on the left, agent reasoning on the right" loading="lazy" decoding="async"
+               onerror="this.remove()" />
         <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice">
           <rect class="art-bg" width="600" height="375"/>
           <rect class="art-soft pop" style="--i:0" x="30" y="102" width="122" height="122" rx="6"/>
@@ -786,8 +790,8 @@
       <a class="shot" style="--h: 145" href="https://github.com/vihaankrishna100/FinSight-AI" target="_blank" rel="noopener">
           <div class="shotlink">github &#8599;</div>
           <div class="figtag">fig. 5</div>
-        <!-- To use a real screenshot: save it as shots/finsight.png and uncomment the next line.
-               <img src="shots/finsight.png" alt="" onerror="this.remove()" /> -->
+        <img src="shots/finsight.png" alt="FinSight AI's interface: stock ticker, time frame and an investment question" loading="lazy" decoding="async"
+               onerror="this.remove()" />
         <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice">
           <rect class="art-bg" width="600" height="375"/>
           <path class="art-ink fade" style="--i:0" d="M46 292h250M46 292V96" stroke-width="1.4" opacity=".5"/>
@@ -834,8 +838,8 @@
         <a class="shot" style="--h: 25" href="https://github.com/vihaankrishna100/FeynMind-AI" target="_blank" rel="noopener">
           <div class="shotlink">github &#8599;</div>
           <div class="figtag">fig. 6</div>
-          <!-- To use a real screenshot: save it as shots/feynmind.png and uncomment the next line.
-               <img src="shots/feynmind.png" alt="" onerror="this.remove()" /> -->
+          <img src="shots/feynmind.png" alt="FeynMind AI's interface: pick a topic, then generate a quiz or open a Feynman chat" loading="lazy" decoding="async"
+               onerror="this.remove()" />
           <svg viewBox="0 0 600 375" preserveAspectRatio="xMidYMid slice">
           <rect class="art-bg" width="600" height="375"/>
           <circle class="art-ink draw" style="--i:0" cx="300" cy="176" r="102"
