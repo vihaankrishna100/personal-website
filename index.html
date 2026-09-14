@@ -106,7 +106,10 @@
       var(--paper);
     color: var(--ink);
     font-family: var(--sans);
-    font-size: 16px;
+    /* 100%, not a hard 16px: a reader who has raised their browser's default
+       font size gets larger body text, and the rem-based sizes elsewhere on
+       the page already scale off that same root. */
+    font-size: 100%;
     line-height: 1.62;
     -webkit-font-smoothing: antialiased;
   }
