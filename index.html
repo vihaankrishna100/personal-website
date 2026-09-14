@@ -4,6 +4,11 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+<!-- Only send the origin, never the full path, to other sites. Google Fonts
+     and every outbound link on the page get "https://vihaankrishna100.github.io"
+     and nothing more. -->
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+
 <!-- Content Security Policy. GitHub Pages can't set response headers, so this
      rides in a meta tag; frame-ancestors is header-only and deliberately
      omitted rather than listed and silently ignored. The page is one static
