@@ -516,6 +516,13 @@
   .pcopy h3 { font-size: 1.5rem; margin-bottom: 12px; }
   .grid2 .pcopy h3 { font-size: 1.2rem; margin-top: 18px; }
   .pcopy p { color: var(--ink-soft); margin: 0; }
+  /* Same mono stamp the timeline uses for its dates, so a project's run
+     reads the same way as a role's. */
+  .pcopy .pwhen {
+    font-family: var(--mono); font-size: 0.7rem;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--ink-soft); margin: -6px 0 12px;
+  }
   .pcopy .metric { font-family: var(--mono); font-size: 0.86rem; color: var(--ink); margin-top: 14px; }
   .plinks { display: flex; gap: 20px; margin-top: 18px; font-size: 0.92rem; }
   .plinks a { color: var(--accent); }
@@ -832,6 +839,7 @@
       </a>
       <div class="pcopy">
         <h3><a href="https://www.mypypath.com" target="_blank" rel="noopener">PyPath</a></h3>
+        <p class="pwhen">May 2025 — Present</p>
         <p>
           A social-impact initiative I co-founded with Sai Chowdarapu that teaches
           beginners Python through short, interactive activities — one idea at a
