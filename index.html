@@ -97,7 +97,12 @@
   }
 
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  html { -webkit-text-size-adjust: 100%; }
+  /* Smooth scrolling only for readers who haven't asked motion to stop; the
+     nav jumps and the montage already respect the same preference. */
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
   body {
     margin: 0;
     background:
