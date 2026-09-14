@@ -119,6 +119,16 @@
     -webkit-font-smoothing: antialiased;
   }
   a { color: inherit; text-decoration: none; }
+  /* Offscreen until it is tabbed to, then a normal button at top-left. */
+  .skip {
+    position: absolute; left: 12px; top: -60px; z-index: 100;
+    padding: 10px 16px; border-radius: 6px;
+    background: var(--accent); color: var(--paper);
+    font-size: 0.9rem; font-weight: 600;
+    transition: top .14s ease;
+  }
+  .skip:focus { top: 12px; }
+  @media (prefers-reduced-motion: reduce) { .skip { transition: none; } }
   /* Links here are undecorated and take their colour from the surrounding
      text, so without an explicit ring a keyboard reader tabbing the sidebar
      has nothing telling them where they are. */
@@ -608,6 +618,8 @@
 </head>
 <body>
 
+<a class="skip" href="#content">Skip to content</a>
+
 <!-- ============================================================
      SIDEBAR
      ============================================================ -->
@@ -657,7 +669,7 @@
 <!-- ============================================================
      MAIN
      ============================================================ -->
-<main class="main">
+<main class="main" id="content" tabindex="-1">
 
   <!-- ---------- HOME ---------- -->
   <section id="home" class="hero">
