@@ -119,6 +119,16 @@
     -webkit-font-smoothing: antialiased;
   }
   a { color: inherit; text-decoration: none; }
+  /* Links here are undecorated and take their colour from the surrounding
+     text, so without an explicit ring a keyboard reader tabbing the sidebar
+     has nothing telling them where they are. */
+  a:focus-visible,
+  button:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
   h1, h2, h3 { font-family: var(--serif); font-weight: 500; letter-spacing: -0.012em; margin: 0; }
 
   /* ============================================================
