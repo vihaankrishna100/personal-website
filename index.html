@@ -4,6 +4,25 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+<!-- Content Security Policy. GitHub Pages can't set response headers, so this
+     rides in a meta tag; frame-ancestors is header-only and deliberately
+     omitted rather than listed and silently ignored. The page is one static
+     file with inline <style>, inline <script> and a few onerror handlers, so
+     'unsafe-inline' is required — what this still buys is that no script,
+     style, font or image can be pulled from an origin not named here. -->
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'none';
+  base-uri 'none';
+  form-action 'none';
+  object-src 'none';
+  frame-src 'none';
+  connect-src 'none';
+  img-src 'self';
+  script-src 'self' 'unsafe-inline';
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  font-src https://fonts.gstatic.com;
+" />
+
 <!-- ============================================================
      EDIT THESE for search engines / browser tabs
      ============================================================ -->
