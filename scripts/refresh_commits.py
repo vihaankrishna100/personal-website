@@ -16,12 +16,21 @@ import json
 import os
 import re
 import sys
+import urllib.parse
 import urllib.request
 
 USER = sys.argv[1] if len(sys.argv) > 1 else "vihaankrishna100"
+
+# GitHub's own username rule. Checked before the name is interpolated into a
+# URL so a stray slash, dot-segment or "@" can't move the request to another
+# host or path.
+if not re.fullmatch(r"[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?", USER):
+    sys.exit(f"Not a valid GitHub username: {USER!r}")
+
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGE = os.path.join(HERE, "index.html")
-URL = f"https://github.com/users/{USER}/contributions"
+HOST = "github.com"
+URL = f"https://{HOST}/users/{USER}/contributions"
 
 
 def fetch(url):
@@ -30,6 +39,11 @@ def fetch(url):
         "Accept": "text/html",
     })
     with urllib.request.urlopen(req, timeout=30) as r:
+        # urlopen follows redirects anywhere; the markup we parse only comes
+        # from GitHub, so refuse a response that ended up somewhere else.
+        landed = urllib.parse.urlsplit(r.geturl())
+        if landed.scheme != "https" or landed.hostname != HOST:
+            sys.exit(f"Refusing response redirected to {r.geturl()}")
         return r.read().decode("utf-8", "replace")
 
 
