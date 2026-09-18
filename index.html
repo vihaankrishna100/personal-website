@@ -24,8 +24,8 @@
   connect-src 'none';
   img-src 'self';
   script-src 'self' 'unsafe-inline';
-  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-  font-src https://fonts.gstatic.com;
+  style-src 'self' 'unsafe-inline';
+  font-src 'none';
 " />
 
 <!-- ============================================================
@@ -41,9 +41,6 @@
 <link rel="icon" href="favicon-192.png" type="image/png" sizes="192x192" />
 <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
 
 <script>
   /* Apply the saved theme before first paint so there's no flash. */
@@ -69,9 +66,7 @@
     --grid:      rgba(33, 31, 27, 0.045);
     --accent:    #b0451f;
     --marker:    rgba(176, 69, 31, 0.16);
-    --serif:     "Newsreader", Georgia, "Times New Roman", serif;
-    --sans:      "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    --mono:      "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --sans:      Arial, "Helvetica Neue", Helvetica, sans-serif;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -139,7 +134,7 @@
     outline-offset: 3px;
     border-radius: 2px;
   }
-  h1, h2, h3 { font-family: var(--serif); font-weight: 500; letter-spacing: -0.012em; margin: 0; }
+  h1, h2, h3 { font-family: var(--sans); font-weight: 700; letter-spacing: -0.02em; margin: 0; }
 
   /* ============================================================
      SIDEBAR
@@ -161,7 +156,7 @@
     background: var(--card); border: 1px solid var(--line);
     display: grid; place-items: center;
   }
-  .avatar::after { content: "photo"; font-family: var(--mono); font-size: 0.55rem; color: var(--ink-soft); }
+  .avatar::after { content: "photo"; font-family: var(--sans); font-size: 0.55rem; color: var(--ink-soft); }
   /* absolutely positioned so object-fit actually gets a square box to cover.
      object-position lifts the crop so the face sits centred, not the tie. */
   .avatar img {
@@ -170,8 +165,8 @@
     object-fit: cover; object-position: 50% 30%;
     background: var(--card);
   }
-  .id b { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; line-height: 1.15; }
-  .id span { display: block; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); margin-top: 3px; }
+  .id b { font-family: var(--sans); font-size: 1.05rem; font-weight: 600; line-height: 1.15; }
+  .id span { display: block; font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); margin-top: 3px; }
 
   nav { display: flex; flex-direction: column; gap: 2px; }
   nav a {
@@ -184,14 +179,14 @@
   nav a:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 5%, transparent); }
   nav a.active { color: var(--accent); background: var(--card); box-shadow: inset 0 0 0 1px var(--line); }
 
-  .rail-label { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); padding: 0 11px; }
+  .rail-label { font-family: var(--sans); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); padding: 0 11px; }
   .sidebar-foot { margin-top: auto; display: flex; flex-direction: column; gap: 12px; }
 
   .cta {
     display: inline-flex; align-items: center; justify-content: space-between; gap: 10px;
     padding: 11px 16px; border-radius: 999px;
     background: var(--ink); color: var(--paper);
-    font-size: 0.9rem; font-weight: 500;
+    font-size: 0.9rem; font-weight: 700;
     transition: transform 0.15s ease;
   }
   .cta:hover { transform: translateY(-1px); }
@@ -201,7 +196,7 @@
     display: inline-flex; align-items: center; gap: 9px;
     padding: 8px 13px; border: 1px solid var(--line); border-radius: 999px;
     background: var(--card); color: var(--ink-soft);
-    font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.05em;
+    font-family: var(--sans); font-size: 0.74rem; letter-spacing: 0.05em;
     text-transform: uppercase; cursor: pointer;
     transition: border-color 0.15s ease, color 0.15s ease;
   }
@@ -235,12 +230,12 @@
   section + section { margin-top: 88px; }
 
   .kicker {
-    font-family: var(--mono); font-size: 0.72rem;
+    font-family: var(--sans); font-size: 0.72rem;
     letter-spacing: 0.16em; text-transform: uppercase;
     color: var(--accent); margin-bottom: 16px;
   }
   h2 { font-size: 1.85rem; margin-bottom: 10px; }
-  .sub { font-family: var(--serif); font-style: italic; font-size: 1.02rem; color: var(--ink-soft); margin: 0 0 26px; }
+  .sub { font-family: var(--sans); font-style: italic; font-size: 1.02rem; color: var(--ink-soft); margin: 0 0 26px; }
   p.body { color: var(--ink-soft); }
   p.body + p.body { margin-top: 14px; }
 
@@ -259,12 +254,12 @@
   h1 { font-size: clamp(2.4rem, 5.5vw, 3.4rem); line-height: 1.05; margin: 10px 0 22px; }
   .lede { font-size: 1.12rem; color: var(--ink-soft); max-width: 60ch; margin: 0; }
   .lede + .lede { margin-top: 14px; }
-  .lede strong { color: var(--ink); font-weight: 500; }
+  .lede strong { color: var(--ink); font-weight: 700; }
   .hl { background-image: linear-gradient(transparent 62%, var(--marker) 0); padding: 0 2px; }
 
   .hero-links { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 28px; }
   .hero-links a {
-    font-family: var(--mono); font-size: 0.8rem;
+    font-family: var(--sans); font-size: 0.8rem;
     border: 1px solid var(--line); border-radius: 7px;
     padding: 7px 12px; color: var(--ink-soft);
     transition: border-color 0.15s ease, color 0.15s ease;
@@ -278,7 +273,7 @@
      ============================================================ */
   .montage-wrap { margin-top: 52px; }
   .montage-label {
-    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.16em;
+    font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.16em;
     text-transform: uppercase; color: var(--ink-soft); margin-bottom: 14px;
   }
   .montage {
@@ -311,7 +306,7 @@
     :root:not([data-theme="light"]) .tile .ph { background: linear-gradient(150deg, hsl(var(--h) 24% 22%), hsl(var(--h) 28% 15%)); color: hsl(var(--h) 45% 72%); }
   }
   .tile .ph svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.5; }
-  .tile .ph b { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 400; }
+  .tile .ph b { font-family: var(--sans); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 400; }
 
   /* one group active: everything else steps back */
   .montage.lit .tile { opacity: 0.26; filter: saturate(0.45); }
@@ -322,9 +317,9 @@
     margin-top: 14px; min-height: 2.9em;
     display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
   }
-  .montage-cap b { font-family: var(--serif); font-size: 1.12rem; font-weight: 600; }
+  .montage-cap b { font-family: var(--sans); font-size: 1.12rem; font-weight: 600; }
   .montage-cap span { color: var(--ink-soft); font-size: 0.94rem; }
-  .montage-cap .hint { font-family: var(--mono); font-size: 0.74rem; color: var(--ink-soft); }
+  .montage-cap .hint { font-family: var(--sans); font-size: 0.74rem; color: var(--ink-soft); }
 
   @media (prefers-reduced-motion: reduce) {
     .tile { transition: none; }
@@ -357,8 +352,8 @@
     width: 14px; height: 14px; border-radius: 50%;
     background: var(--paper); border: 2px solid var(--accent);
   }
-  .tl-when { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-soft); }
-  .tl-role { font-family: var(--serif); font-weight: 600; font-size: 1.08rem; margin: 3px 0 1px; }
+  .tl-when { font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-soft); }
+  .tl-role { font-family: var(--sans); font-weight: 600; font-size: 1.08rem; margin: 3px 0 1px; }
   .tl-org { color: var(--ink-soft); font-size: 0.92rem; }
   .tl-note { font-size: 0.9rem; color: var(--ink-soft); margin-top: 6px; }
 
@@ -374,24 +369,24 @@
   .legend {
     position: absolute; right: 16px; bottom: 14px;
     display: flex; align-items: center; gap: 5px;
-    font-family: var(--mono); font-size: 0.7rem; color: var(--ink-soft);
+    font-family: var(--sans); font-size: 0.7rem; color: var(--ink-soft);
   }
   .legend i { width: 13px; height: 13px; border-radius: 2px; display: block; }
   .tip {
     position: absolute; pointer-events: none; z-index: 3;
     background: var(--ink); color: var(--paper);
-    font-family: var(--mono); font-size: 0.72rem;
+    font-family: var(--sans); font-size: 0.72rem;
     padding: 5px 9px; border-radius: 4px; white-space: nowrap;
     transform: translate(-50%, -140%);
   }
-  .figcap { font-family: var(--mono); font-size: 0.74rem; color: var(--ink-soft); margin: 14px 0 0; }
+  .figcap { font-family: var(--sans); font-size: 0.74rem; color: var(--ink-soft); margin: 14px 0 0; }
   .figcap b { color: var(--accent); font-weight: 400; }
   .ghstats {
     display: flex; flex-wrap: wrap; justify-content: space-between;
     gap: 22px; margin-top: 26px;
-    font-family: var(--mono); font-size: 0.76rem; color: var(--ink-soft);
+    font-family: var(--sans); font-size: 0.76rem; color: var(--ink-soft);
   }
-  .ghstats b { color: var(--accent); font-weight: 500; }
+  .ghstats b { color: var(--accent); font-weight: 700; }
   .langwrap { flex: 1 1 320px; max-width: 420px; }
   .langbar { display: flex; height: 7px; border-radius: 4px; overflow: hidden; gap: 2px; }
   .langbar i { display: block; height: 100%; }
@@ -422,7 +417,7 @@
   }
   .shot .shotlink {
     position: absolute; right: 12px; top: 10px; z-index: 3;
-    font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em;
+    font-family: var(--sans); font-size: 0.62rem; letter-spacing: 0.1em;
     text-transform: uppercase; color: hsl(var(--h) 40% 40%);
     opacity: 0.6; transition: opacity 0.18s ease;
   }
@@ -444,7 +439,7 @@
   .shot .art-ink { stroke: hsl(var(--h) 45% 38%); fill: none; stroke-width: 2; }
   .shot .art-fill { fill: hsl(var(--h) 45% 42%); }
   .shot .art-soft { fill: hsl(var(--h) 40% 84%); }
-  .shot .art-label { fill: hsl(var(--h) 40% 34%); font-family: "IBM Plex Mono", monospace; font-size: 13px; }
+  .shot .art-label { fill: hsl(var(--h) 40% 34%); font-family: var(--sans); font-size: 13px; }
   /* knocked-out strokes, for marks drawn on top of a filled shape */
   .shot .art-knock { stroke: hsl(var(--h) 40% 94%); fill: none; stroke-linecap: round; stroke-linejoin: round; }
   :root[data-theme="dark"] .shot .art-bg { fill: hsl(var(--h) 22% 13%); }
@@ -500,7 +495,7 @@
 
   .shot .figtag {
     position: absolute; left: 12px; top: 10px; z-index: 3;
-    font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em;
+    font-family: var(--sans); font-size: 0.62rem; letter-spacing: 0.1em;
     text-transform: uppercase; color: hsl(var(--h) 40% 40%); opacity: 0.75;
   }
   :root[data-theme="dark"] .shot .figtag { color: hsl(var(--h) 45% 66%); }
@@ -519,11 +514,11 @@
   /* Same mono stamp the timeline uses for its dates, so a project's run
      reads the same way as a role's. */
   .pcopy .pwhen {
-    font-family: var(--mono); font-size: 0.7rem;
+    font-family: var(--sans); font-size: 0.7rem;
     letter-spacing: 0.05em; text-transform: uppercase;
     color: var(--ink-soft); margin: -6px 0 12px;
   }
-  .pcopy .metric { font-family: var(--mono); font-size: 0.86rem; color: var(--ink); margin-top: 14px; }
+  .pcopy .metric { font-family: var(--sans); font-size: 0.86rem; color: var(--ink); margin-top: 14px; }
   .plinks { display: flex; gap: 20px; margin-top: 18px; font-size: 0.92rem; }
   .plinks a { color: var(--accent); }
   .plinks a.muted { color: var(--ink-soft); }
@@ -543,7 +538,7 @@
   }
   .tool:hover { border-color: color-mix(in srgb, var(--brand, var(--accent)) 55%, var(--line)); transform: translateY(-2px); }
   .tool svg { width: 22px; height: 22px; flex: 0 0 22px; fill: var(--brand); }
-  .tool span { font-family: var(--mono); font-size: 0.76rem; color: var(--ink-soft); line-height: 1.2; }
+  .tool span { font-family: var(--sans); font-size: 0.76rem; color: var(--ink-soft); line-height: 1.2; }
   :root[data-theme="dark"] .tool svg { fill: var(--brand-dk, var(--brand)); }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) .tool svg { fill: var(--brand-dk, var(--brand)); }
@@ -554,7 +549,7 @@
   .mailrow { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 22px; }
   .mailbig {
     display: inline-flex; align-items: center; gap: 11px;
-    font-family: var(--serif); font-size: clamp(1.15rem, 3vw, 1.6rem);
+    font-family: var(--sans); font-size: clamp(1.15rem, 3vw, 1.6rem);
     color: var(--accent); word-break: break-all;
   }
   .mailbig svg { width: 22px; height: 22px; flex: 0 0 22px; }
@@ -562,7 +557,7 @@
   .copybtn {
     border: 1px solid var(--line); border-radius: 999px;
     background: var(--card); color: var(--ink-soft);
-    font-family: var(--mono); font-size: 0.72rem;
+    font-family: var(--sans); font-size: 0.72rem;
     letter-spacing: 0.08em; text-transform: uppercase;
     padding: 7px 14px; cursor: pointer;
     transition: border-color 0.15s ease, color 0.15s ease;
@@ -579,7 +574,7 @@
   }
   .contact-links a:hover { border-color: var(--accent); color: var(--accent); }
 
-  footer { margin-top: 90px; padding-top: 22px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 0.74rem; color: var(--ink-soft); }
+  footer { margin-top: 90px; padding-top: 22px; border-top: 1px solid var(--line); font-family: var(--sans); font-size: 0.74rem; color: var(--ink-soft); }
 
   /* ---- Reveal-on-scroll (JS only) ---- */
   .js .reveal { opacity: 0; transform: translateY(16px); }
